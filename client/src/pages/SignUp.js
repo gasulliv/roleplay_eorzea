@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import Axios from 'axios'
+import { useNavigate, Link } from 'react-router-dom';
+import Login from './Login'
 
 function SignUp() {
     const userRef = useRef();
@@ -11,6 +13,8 @@ function SignUp() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         //sets focus to username input
@@ -31,6 +35,10 @@ function SignUp() {
             password
         }).then(response => {
             console.log(response)
+            if(response.status = 200) {
+                console.log(response);
+                navigate('/login');
+            }
         }).catch(err => {
             console.log(err);
         })
@@ -76,6 +84,7 @@ function SignUp() {
             Please enter a password
         </p> 
         <button type="submit">Sign Up</button>
+        <p><Link to="/login">Alreayd have an account?</Link></p>
     </form>
 
     return content
